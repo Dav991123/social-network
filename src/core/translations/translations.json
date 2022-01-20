@@ -1,0 +1,11 @@
+{
+    "AGE": "AGE",
+    "NAME": "NAME",
+    "LOGIN": "LOGIN",
+    "EMAIL": "EMAIL",
+    "PASSWORD": "PASSWORD",
+    "REGISTER": "REGISTER",
+    "LAST_NAME": "LAST_NAME",
+    "FULL_NAME": "FULL_NAME",
+    "FIRST_NAME": "FIRST_NAME"
+}
