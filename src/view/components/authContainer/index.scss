@@ -1,0 +1,29 @@
+.auth_container {
+    .title {
+        text-align: center;
+        font-weight: 400;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    .form_content {
+        min-width: 400px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        a {
+            color: #597EF7FF;
+            font-size: 0.9rem;
+        }
+    }
+}
