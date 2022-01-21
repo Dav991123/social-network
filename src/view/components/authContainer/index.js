@@ -24,6 +24,7 @@ const AuthContainer = ({
                            onSave,
                            authType,
                            children,
+                           position,
                            saveButtonLoading
                        }) => {
     const translate = useTranslation();
@@ -35,7 +36,7 @@ const AuthContainer = ({
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="auth_container">
+            <div className={`auth_container ${position}`}>
                 <div className="form_content">
                     <h2 className="title">{translate(AUTH_MODEL[authType].title)}</h2>
                     {children}

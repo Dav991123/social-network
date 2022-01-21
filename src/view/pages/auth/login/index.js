@@ -36,6 +36,7 @@ const Login = () => {
     return (
         <AuthContainer
             authType="login"
+            position="center"
             isValid={isValid}
             onSave={handleLogin}
             saveButtonLoading={pending}
