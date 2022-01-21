@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { signUp } from '../authSlice';
+import { useDispatch } from 'react-redux';
+import { useForm } from '../../../../hooks/useForm';
 import TextInput from '../../../components/textInput';
+import AuthContainer from '../../../components/authContainer';
 import PasswordInput from '../../../components/passwordInput';
 import T from '../../../../core/translations/translations.json';
-import AuthContainer from '../../../components/authContainer';
-import { useDispatch } from 'react-redux';
-import { signUp } from '../authSlice';
-import { useForm } from '../../../../hooks/useForm';
 import { signUpValidation } from '../../../../core/helpers/authValidation';
 
 const Register = () => {
@@ -17,12 +17,6 @@ const Register = () => {
             password: '',
         },
         validation: signUpValidation,
-    });
-
-    const [inputValues, setInputValues] = useState({
-        name: '',
-        email: '',
-        password: '',
     });
 
     const handleRegister = () => {
