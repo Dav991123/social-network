@@ -4,14 +4,19 @@ import LocalStorageHelper from '../../../helpers/localStorageHelper';
 import { ACCESS } from '../../../constants/util';
 
 const END_POINTS = {
+    me: 'me',
     prefix: 'user',
     login: 'login',
-    me: 'me',
+    register: 'register'
 };
 
 class AuthApiHandler {
     async login (data) {
         return await httpClient.post(`${END_POINTS.prefix}/${END_POINTS.login}`, data);
+    }
+
+    async signUp (data) {
+        return await httpClient.post(`${END_POINTS.prefix}/${END_POINTS.register}`, data);
     }
 
     async getUserMe () {

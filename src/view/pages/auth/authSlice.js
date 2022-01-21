@@ -1,11 +1,18 @@
+import { ACCESS } from '../../../core/constants/util';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import authApiHandler from '../../../core/services/api/authApiHandler';
 import LocalStorageHelper from '../../../core/helpers/localStorageHelper';
-import { ACCESS } from '../../../core/constants/util';
 
 const initialState = {
     isAuth: false,
     userData: {}
+};
+
+const authResponseProcess = (response, dispatch) => {
+    const { user, token } = response;
+    dispatch(setIsAuth(true));
+    LocalStorageHelper.setItem(ACCESS, token);
+    dispatch(setUserData(user));
 };
 
 export const signIn = createAsyncThunk(
@@ -14,18 +21,23 @@ export const signIn = createAsyncThunk(
     async (payload, { dispatch }) => {
         const response = await authApiHandler.login(payload);
         if (response) {
-            const { user, token } = response;
-            dispatch(setIsAuth(true));
-            LocalStorageHelper.setItem(ACCESS, token);
-            dispatch(setUserData(response.user));
+            authResponseProcess(response, dispatch);
         }
+    }
+);
+
+export const signUp = createAsyncThunk(
+    'auth/signIn',
+    async (payload, { dispatch }) => {
+        const response = await authApiHandler.signUp(payload);
+        authResponseProcess(response, dispatch);
     }
 );
 
 export const authRefresh = createAsyncThunk(
     //action type string
     'auth/authRefresh',
-    async (_, {dispatch}) => {
+    async (_, { dispatch }) => {
         if (LocalStorageHelper.getItem(ACCESS)) {
             dispatch(setIsAuth(true));
             const response = await authApiHandler.getUserMe();
