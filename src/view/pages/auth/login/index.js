@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { signIn } from '../authSlice';
 import { useForm } from '../../../../hooks/useForm';
 import TextInput from '../../../components/textInput';
@@ -8,19 +8,20 @@ import AuthContainer from '../../../components/authContainer';
 import T from '../../../../core/translations/translations.json';
 import { signInValidation } from '../../../../core/helpers/authValidation';
 import './index.scss';
+import { authPendingSelector } from '../../../../stateManagement/selectors/auth';
 
 const Login = () => {
     const dispatch = useDispatch();
-    const { values, errors, isValid, handleChange, handleSubmit } = useForm({
+    const pending = useSelector(authPendingSelector);
+    const { values, errors, isValid, handleChange } = useForm({
         initialState: {
-            email: 'sargsyand89@gmail.com',
+            email: '',
             password: ''
         },
         validation: signInValidation,
     });
 
     const handleLogin = () => {
-        handleSubmit();
         if (isValid) {
             let { email, password } = values;
             email = email.trim();
@@ -35,7 +36,9 @@ const Login = () => {
     return (
         <AuthContainer
             authType="login"
+            isValid={isValid}
             onSave={handleLogin}
+            saveButtonLoading={pending}
         >
             <TextInput
                 name="email"

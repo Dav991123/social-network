@@ -1,8 +1,11 @@
 .text_input_container {
-    h3 {
+  margin: 10px 0;
+    .label_title {
         font-weight: 400;
         font-size: 0.9em;
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
     }
     input {
         padding: 12px;
@@ -17,8 +20,10 @@
           }
     }
   .error_text_content {
-    color: red;
+    color: #ff4736;
     font-size: 0.7em;
     margin-left: 5px;
+    width: 300px;
+    display: block;
   }
 }

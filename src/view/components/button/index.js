@@ -6,6 +6,7 @@ const Button = ({
                     text = '',
                     children,
                     onClick,
+                    isLoading,
                     ...restProps
                 }) => {
     const translate = useTranslation();
@@ -16,7 +17,8 @@ const Button = ({
             className="btn_container"
             {...restProps}
         >
-            {children || translate(text)}
+            {isLoading && <span className="loading"/>}
+            <div>{children || translate(text)} </div>
         </button>
     );
 };

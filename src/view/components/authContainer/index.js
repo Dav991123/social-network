@@ -24,6 +24,7 @@ const AuthContainer = ({
                            onSave,
                            authType,
                            children,
+                           saveButtonLoading
                        }) => {
     const translate = useTranslation();
 
@@ -46,6 +47,7 @@ const AuthContainer = ({
                             {translate(AUTH_MODEL[authType].linkText)}
                         </Link>
                         <Button
+                            isLoading={saveButtonLoading}
                             text={translate(AUTH_MODEL[authType].buttonText)}
                         />
                     </div>

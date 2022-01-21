@@ -24,7 +24,10 @@ const TextInput = ({
     return (
         <div className="text_input_container">
             <label>
-                <h3>{translate(label)}</h3>
+                <h3 className="label_title">
+                    <span>{translate(label)}</span>
+                    {errorText && <span className="error_text_content">({errorText})</span>}
+                </h3>
                 <input
                     type={type}
                     name={name}
@@ -34,7 +37,7 @@ const TextInput = ({
                     placeholder={translate(placeholder)}
                 />
             </label>
-            {errorText && <span className="error_text_content">{errorText}</span>}
+
         </div>
 
     );

@@ -4,6 +4,7 @@ import { rootRoutes } from '../../routing/router';
 import { useDispatch } from 'react-redux';
 import './index.scss';
 import { authRefresh } from '../pages/auth/authSlice';
+import Header from '../components/header';
 
 const App = () => {
     const [ isLoading, seIsLoading ] = useState(true);
@@ -24,6 +25,7 @@ const App = () => {
 
     return (
         <div>
+            <Header />
             <Routes routes={rootRoutes}/>
         </div>
     );
