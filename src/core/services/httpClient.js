@@ -45,7 +45,6 @@ export const httpConfig = axios.create({
 });
 
 export const onFulfilled = res => {
-    console.log(res, 'res');
     return res.data;
 };
 

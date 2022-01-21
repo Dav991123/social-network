@@ -1,15 +1,40 @@
 
-
 .btn_container {
-    border: none;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
-    padding: 10px 18px;
-    border-radius: 4px;
-    transition-duration: 0.5s;
-    background-color: #4CAF50;
-    &:hover {
-        background-color: #45a049;
-    }
+  border: none;
+  color: white;
+
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  transition-duration: 0.5s;
+  background-color: #4CAF50;
+  display: flex;
+  align-items: center;
+
+  .loading {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border: 2px solid #fff;
+    margin-right: 10px;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: rotate 1s infinite linear;
+  }
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

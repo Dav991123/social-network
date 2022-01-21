@@ -7,6 +7,7 @@ const END_POINTS = {
     me: 'me',
     prefix: 'user',
     login: 'login',
+    logout: 'logout',
     register: 'register'
 };
 
@@ -17,6 +18,10 @@ class AuthApiHandler {
 
     async signUp (data) {
         return await httpClient.post(`${END_POINTS.prefix}/${END_POINTS.register}`, data);
+    }
+
+    async logOut () {
+        return await httpClient.post(`${END_POINTS.prefix}/${END_POINTS.logout}`);
     }
 
     async getUserMe () {

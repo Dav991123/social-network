@@ -1,16 +1,18 @@
 import React from 'react';
 import { signUp } from '../authSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../../../hooks/useForm';
 import TextInput from '../../../components/textInput';
 import AuthContainer from '../../../components/authContainer';
 import PasswordInput from '../../../components/passwordInput';
 import T from '../../../../core/translations/translations.json';
 import { signUpValidation } from '../../../../core/helpers/authValidation';
+import { authPendingSelector } from '../../../../stateManagement/selectors/auth';
 
 const Register = () => {
     const dispatch = useDispatch();
-    const { values, errors, isValid, handleChange, handleSubmit } = useForm({
+    const pending = useSelector(authPendingSelector);
+    const { values, errors, isValid, handleChange } = useForm({
         initialState: {
             name: '',
             email: '',
@@ -20,7 +22,6 @@ const Register = () => {
     });
 
     const handleRegister = () => {
-        handleSubmit();
         if (isValid) {
             dispatch(signUp(values));
         }
@@ -30,6 +31,7 @@ const Register = () => {
         <AuthContainer
             authType="register"
             onSave={handleRegister}
+            saveButtonLoading={pending}
         >
             <TextInput
                 name="name"
