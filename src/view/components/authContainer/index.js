@@ -19,34 +19,40 @@ const AUTH_MODEL = {
         linkText: T.REGISTER,
         linkPath: ROUTE_CONSTANTS.REGISTER
     }
-}
+};
 const AuthContainer = ({
-    onSave,
-    authType,
-    children,
-}) => {
+                           onSave,
+                           authType,
+                           children,
+                       }) => {
     const translate = useTranslation();
 
-    return (
-        <div className="auth_container">
-             <div className="form_content">
-             <h2 className="title">{translate(AUTH_MODEL[authType].title)}</h2>
-                {children}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSave(e);
+    };
 
-                <div className="footer">
-                    <Link 
-                        to={AUTH_MODEL[authType].linkPath}
-                    >
-                        {translate(AUTH_MODEL[authType].linkText)}
-                    </Link>
-                    <Button 
-                        text={translate(AUTH_MODEL[authType].buttonText)}
-                        onClick={onSave}
-                    />
+    return (
+        <form onSubmit={handleSubmit}>
+            <div className="auth_container">
+                <div className="form_content">
+                    <h2 className="title">{translate(AUTH_MODEL[authType].title)}</h2>
+                    {children}
+
+                    <div className="footer">
+                        <Link
+                            to={AUTH_MODEL[authType].linkPath}
+                        >
+                            {translate(AUTH_MODEL[authType].linkText)}
+                        </Link>
+                        <Button
+                            text={translate(AUTH_MODEL[authType].buttonText)}
+                        />
+                    </div>
                 </div>
-             </div>
-        </div>
-    )
+            </div>
+        </form>
+    );
 };
 
 export default AuthContainer;

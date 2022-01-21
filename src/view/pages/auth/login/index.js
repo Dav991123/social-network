@@ -1,33 +1,35 @@
 import React, { useState } from 'react';
 import { signIn } from '../authSlice';
+import { useForm } from '../../../../hooks/useForm';
 import TextInput from '../../../components/textInput';
 import { useSelector, useDispatch } from 'react-redux';
-import useTranslation from '../../../../hooks/useTranslation';
+import PasswordInput from '../../../components/passwordInput';
 import AuthContainer from '../../../components/authContainer';
 import T from '../../../../core/translations/translations.json';
+import { signInValidation } from '../../../../core/helpers/authValidation';
 import './index.scss';
 
 const Login = () => {
     const dispatch = useDispatch();
-    const translate = useTranslation();
-
-    const [inputValues, setInputValues] = useState({
-        email: 'sargsyand89@gmail.com',
-        password: '20022002Dav'
+    const { values, errors, isValid, handleChange, handleSubmit } = useForm({
+        initialState: {
+            email: 'sargsyand89@gmail.com',
+            password: ''
+        },
+        validation: signInValidation,
     });
 
-    const handleChangeInput = ({ target: { name, value } }) => {
-        setInputValues(v => ({ ...v, [name]: value }));
-    };
-
     const handleLogin = () => {
-        let { email, password } = inputValues;
-        email = email.trim();
-        password = password.trim();
+        handleSubmit();
+        if (isValid) {
+            let { email, password } = values;
+            email = email.trim();
+            password = password.trim();
 
-        dispatch(signIn({
-            email, password
-        }));
+            dispatch(signIn({
+                email, password
+            }));
+        }
     };
 
     return (
@@ -39,17 +41,20 @@ const Login = () => {
                 name="email"
                 label={T.EMAIL}
                 placeholder={T.EMAIL}
-                onChange={handleChangeInput}
+                value={values.email}
+                onChange={handleChange}
+                errorText={errors.email}
             />
 
-            <TextInput
+            <PasswordInput
                 name="password"
                 label={T.PASSWORD}
                 placeholder={T.PASSWORD}
-                onChange={handleChangeInput}
+                value={values.password}
+                onChange={handleChange}
+                errorText={errors.password}
             />
         </AuthContainer>
-
     );
 };
 

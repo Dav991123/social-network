@@ -3,11 +3,11 @@ import useTranslation from '../../../hooks/useTranslation';
 import './index.scss';
 
 const Button = ({
-    text = '',
-    children,
-    onClick,
-    ...restProps
-}) => {
+                    text = '',
+                    children,
+                    onClick,
+                    ...restProps
+                }) => {
     const translate = useTranslation();
 
     return (
@@ -18,7 +18,7 @@ const Button = ({
         >
             {children || translate(text)}
         </button>
-    )
+    );
 };
 
 export default Button;

@@ -1,8 +1,8 @@
 import TextInput from '../textInput';
 
 const PasswordInput = ({
-    ...restProps
-}) => {
+                           ...restProps
+                       }) => {
     return (
         <TextInput
             type="password"

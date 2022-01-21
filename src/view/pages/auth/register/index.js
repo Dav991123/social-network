@@ -5,21 +5,31 @@ import T from '../../../../core/translations/translations.json';
 import AuthContainer from '../../../components/authContainer';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../authSlice';
+import { useForm } from '../../../../hooks/useForm';
+import { signUpValidation } from '../../../../core/helpers/authValidation';
 
 const Register = () => {
     const dispatch = useDispatch();
+    const { values, errors, isValid, handleChange, handleSubmit } = useForm({
+        initialState: {
+            name: '',
+            email: '',
+            password: '',
+        },
+        validation: signUpValidation,
+    });
+
     const [inputValues, setInputValues] = useState({
         name: '',
         email: '',
         password: '',
     });
 
-    const handleChangeInput = ({ target: { name, value } }) => {
-        setInputValues(v => ({ ...v, [name]: value }));
-    };
-
     const handleRegister = () => {
-        dispatch(signUp(inputValues));
+        handleSubmit();
+        if (isValid) {
+            dispatch(signUp(values));
+        }
     };
 
     return (
@@ -31,7 +41,8 @@ const Register = () => {
                 name="name"
                 label={T.NAME}
                 placeholder={T.NAME}
-                onChange={handleChangeInput}
+                onChange={handleChange}
+                errorText={errors.name}
             />
 
             <TextInput
@@ -39,14 +50,16 @@ const Register = () => {
                 name="email"
                 label={T.EMAIL}
                 placeholder={T.EMAIL}
-                onChange={handleChangeInput}
+                onChange={handleChange}
+                errorText={errors.email}
             />
 
             <PasswordInput
                 name="password"
                 label={T.PASSWORD}
                 placeholder={T.PASSWORD}
-                onChange={handleChangeInput}
+                onChange={handleChange}
+                errorText={errors.password}
             />
         </AuthContainer>
     );

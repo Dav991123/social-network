@@ -61,4 +61,3 @@ export const httpClient = new HttpClient({
     httpConfig
 });
 
-console.log(httpClient, 'httpClient');
