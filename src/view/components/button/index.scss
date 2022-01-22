@@ -2,7 +2,10 @@
 .btn_container {
   border: none;
   color: white;
-
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
   cursor: pointer;
   margin-top: 10px;
   padding: 10px 18px;

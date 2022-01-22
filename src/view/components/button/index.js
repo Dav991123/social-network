@@ -7,6 +7,7 @@ const Button = ({
                     children,
                     onClick,
                     isLoading,
+                    disabled,
                     ...restProps
                 }) => {
     const translate = useTranslation();
@@ -14,6 +15,7 @@ const Button = ({
     return (
         <button
             onClick={onClick}
+            disabled={disabled}
             className="btn_container"
             {...restProps}
         >
