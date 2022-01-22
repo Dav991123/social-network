@@ -15,14 +15,14 @@ const Modal = ({
 	const translate = useTranslation();
 
 	useEffect(() => {
-		if (visible) {
+		if(visible) {
 			document.body.style.overflow = 'hidden';
 		}
 
 		return () => {
 			document.body.style.overflow = 'unset';
-		}
-	}, [visible]);
+		};
+	}, [ visible ]);
 	return (
 		<div className="modal_main_container open_modal">
 			<div className="modal_main_content">
