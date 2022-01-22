@@ -1,14 +1,22 @@
+@import "../../../core/sass/variables";
+
 .main_header_container {
   top: 0;
   width: 100%;
   position: fixed;
+  height: $header-height;
   cursor: pointer;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #fff;
   box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 
   .header_content {
     display: flex;
-    padding: 20px;
+    width: 100%;
+    padding: 0 20px;
     align-items: center;
     justify-content: space-between;
 
@@ -33,6 +41,7 @@
         background-color: #fff;
         box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
         min-width: 200px;
+
         span {
           padding: 10px;
           display: block;

@@ -30,6 +30,7 @@ const Register = () => {
 
     return (
         <AuthContainer
+            position="center"
             authType="register"
             onSave={handleRegister}
             saveButtonLoading={pending}
