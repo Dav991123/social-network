@@ -27,6 +27,10 @@ class AuthApiHandler {
     async getUserMe () {
         return await httpClient.get(`${END_POINTS.prefix}/${END_POINTS.me}`);
     }
+
+    async editUserData(data) {
+        return await httpClient.put(`${END_POINTS.prefix}/${END_POINTS.me}`, data)
+    }
 }
 
 const authApiHandler = new AuthApiHandler();

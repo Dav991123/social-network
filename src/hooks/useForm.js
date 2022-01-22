@@ -10,7 +10,9 @@ export const useForm = ({ initialState, validation }) => {
     };
 
     useDidUpdateEffect(() => {
-        setErrors(validation(values));
+        if (validation) {
+            setErrors(validation(values));
+        }
     }, [values]);
 
     useEffect(() => {
@@ -24,6 +26,7 @@ export const useForm = ({ initialState, validation }) => {
     return {
         errors,
         values,
+        setValues,
         handleChange,
         isValid: !isDisabled,
     };

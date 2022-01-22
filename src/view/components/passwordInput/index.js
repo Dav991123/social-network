@@ -1,4 +1,4 @@
-import TextInput from '../textInput';
+import TextInput from '../input';
 
 const PasswordInput = ({
                            ...restProps

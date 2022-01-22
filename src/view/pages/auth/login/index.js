@@ -1,14 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { signIn } from '../authSlice';
+import Input from '../../../components/input';
 import { useForm } from '../../../../hooks/useForm';
-import TextInput from '../../../components/textInput';
 import { useSelector, useDispatch } from 'react-redux';
 import PasswordInput from '../../../components/passwordInput';
 import AuthContainer from '../../../components/authContainer';
 import T from '../../../../core/translations/translations.json';
 import { signInValidation } from '../../../../core/helpers/authValidation';
-import './index.scss';
 import { authPendingSelector } from '../../../../stateManagement/selectors/auth';
+import './index.scss';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -21,6 +21,7 @@ const Login = () => {
         validation: signInValidation,
     });
 
+    console.log(errors, 'errors');
     const handleLogin = () => {
         if (isValid) {
             let { email, password } = values;
@@ -40,7 +41,7 @@ const Login = () => {
             onSave={handleLogin}
             saveButtonLoading={pending}
         >
-            <TextInput
+            <Input
                 name="email"
                 label={T.EMAIL}
                 placeholder={T.EMAIL}

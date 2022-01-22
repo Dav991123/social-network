@@ -1,8 +1,8 @@
 import React from 'react';
 import { signUp } from '../authSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import Input from '../../../components/input';
 import { useForm } from '../../../../hooks/useForm';
-import TextInput from '../../../components/textInput';
+import { useDispatch, useSelector } from 'react-redux';
 import AuthContainer from '../../../components/authContainer';
 import PasswordInput from '../../../components/passwordInput';
 import T from '../../../../core/translations/translations.json';
@@ -14,6 +14,7 @@ const Register = () => {
     const pending = useSelector(authPendingSelector);
     const { values, errors, isValid, handleChange } = useForm({
         initialState: {
+            age: '',
             name: '',
             email: '',
             password: '',
@@ -33,7 +34,7 @@ const Register = () => {
             onSave={handleRegister}
             saveButtonLoading={pending}
         >
-            <TextInput
+            <Input
                 name="name"
                 label={T.NAME}
                 placeholder={T.NAME}
@@ -41,13 +42,21 @@ const Register = () => {
                 errorText={errors.name}
             />
 
-            <TextInput
+            <Input
                 type="email"
                 name="email"
                 label={T.EMAIL}
                 placeholder={T.EMAIL}
                 onChange={handleChange}
                 errorText={errors.email}
+            />
+
+            <Input
+                name="age"
+                type="number"
+                value={values.age}
+                placeholder={T.AGE}
+                onChange={handleChange}
             />
 
             <PasswordInput

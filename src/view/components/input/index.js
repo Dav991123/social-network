@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useTranslation from '../../../hooks/useTranslation';
 import './index.scss';
 
 const TextInput = ({
                        name,
                        label,
+                       readOnly,
                        onChange,
                        errorText,
                        placeholder,
                        type = 'text',
                        value: controlledValue,
+                       ...restProps
                    }) => {
-
     const translate = useTranslation();
-    const [value, setValue] = useState(controlledValue);
+    const [value, setValue] = useState('');
+
+    useEffect(() => {
+        setValue(controlledValue)
+    }, [controlledValue]);
 
     const handleChange = (event) => {
         let { value = '' } = event.target;
@@ -31,10 +36,12 @@ const TextInput = ({
                 <input
                     type={type}
                     name={name}
+                    readOnly={readOnly}
                     value={value ?? ''}
                     onChange={handleChange}
-                    className="min_inp_style"
                     placeholder={translate(placeholder)}
+                    className={`min_inp_style`}
+                    {...restProps}
                 />
             </label>
 
