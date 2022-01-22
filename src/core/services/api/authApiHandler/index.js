@@ -1,7 +1,4 @@
-import { API } from '../../../urls';
 import { httpClient } from '../../httpClient';
-import LocalStorageHelper from '../../../helpers/localStorageHelper';
-import { ACCESS } from '../../../constants/util';
 
 const END_POINTS = {
     me: 'me',

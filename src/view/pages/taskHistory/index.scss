@@ -1,0 +1,12 @@
+@import "../../../core/sass/variables";
+
+.task_history_container {
+  margin: $header-height + 30 auto;
+  min-width: 600px;
+  padding: 20px;
+
+  .table_list {
+    margin-top: 10px;
+  }
+
+}

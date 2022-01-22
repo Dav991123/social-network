@@ -6,7 +6,7 @@ import { authSelector } from '../../stateManagement/selectors/auth';
 
 const IsNotAuthLayer = ({ children }) => {
     const isAuth = useSelector(authSelector);
-    return isAuth ? <Redirect to={ROUTE_CONSTANTS.PROFILE}/> : children;
+    return isAuth ? <Redirect to={ROUTE_CONSTANTS.TASK_HISTORY}/> : children;
 };
 
 export default IsNotAuthLayer;

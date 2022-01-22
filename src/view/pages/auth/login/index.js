@@ -21,7 +21,6 @@ const Login = () => {
         validation: signInValidation,
     });
 
-    console.log(errors, 'errors');
     const handleLogin = () => {
         if (isValid) {
             let { email, password } = values;
