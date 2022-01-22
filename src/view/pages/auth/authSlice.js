@@ -22,20 +22,28 @@ export const signIn = createAsyncThunk(
 	//action type string
 	'auth/signIn',
 	async (payload, { dispatch }) => {
-		dispatch(setPending(true));
-		const response = await authApiHandler.login(payload);
-		authResponseProcess(response, dispatch);
-		dispatch(setPending(false));
+		try {
+			dispatch(setPending(true));
+			const response = await authApiHandler.login(payload);
+			authResponseProcess(response, dispatch);
+			dispatch(setPending(false));
+		} catch (error) {
+			dispatch(setPending(false));
+		}
 	}
 );
 
 export const signUp = createAsyncThunk(
 	'auth/signUp',
 	async (payload, { dispatch }) => {
-		dispatch(setPending(true));
-		const response = await authApiHandler.signUp(payload);
-		authResponseProcess(response, dispatch);
-		dispatch(setPending(false));
+		try {
+			dispatch(setPending(true));
+			const response = await authApiHandler.signUp(payload);
+			authResponseProcess(response, dispatch);
+			dispatch(setPending(false));
+		} catch (error) {
+			dispatch(setPending(false));
+		}
 	}
 );
 

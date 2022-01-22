@@ -5,11 +5,11 @@ const END_POINTS = {
 };
 
 class PostsApiHandler {
-	async getTask() {
+	async getPosts() {
 		return await httpClient.get(`${END_POINTS.prefix}`);
 	}
 
-	async addTask(data) {
+	async addPost(data) {
 		return await httpClient.post(`${END_POINTS.prefix}`, data);
 	}
 

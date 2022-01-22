@@ -2,14 +2,20 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { userSelector } from '../../../../stateManagement/selectors/auth';
 import './index.scss';
+import Loading from '../../../components/loading';
+import { postsPendingSelector } from '../../../../stateManagement/selectors/posts';
 
 const PostList = ({ data, onOpenEditModal, onOpenDeleteModal }) => {
 	const user = useSelector(userSelector);
+	const pending = useSelector(postsPendingSelector);
 
 	const dateConverter = (date) => {
 		return new Date(date).toLocaleDateString();
 	};
 
+	if(pending) {
+		return <Loading/>;
+	}
 	return (
 		<div className="post_lists">
 			{
@@ -29,7 +35,7 @@ const PostList = ({ data, onOpenEditModal, onOpenDeleteModal }) => {
 								<div className="action_content">
 									<span
 										className="edit"
-										onClick={() => onOpenEditModal({ id: item._id, description: item.description })}
+										// onClick={() => onOpenEditModal({ id: item._id, description: item.description })}
 									>
 										<i className="fa fa-edit"/>
 									</span>
