@@ -22,7 +22,11 @@ class HttpClient {
 	}
 
 	post(url, data) {
-		return this.httpConfig.post(`${this.api}/${url}`, data);
+		return this.httpConfig.post(`${this.api}/${url}`, data, {
+			headers: {
+				[HEADERS.Authorization]: `${BEARER} ${this.token}`
+			}
+		});
 	}
 
 	put(url, data) {

@@ -1,12 +1,17 @@
 import { httpClient } from '../../httpClient';
 
 const END_POINTS = {
-	prefix: 'task',
+	prefix: 'task'
 };
 
 class TaskHistoryApiHandler {
 	async getTask() {
 		return await httpClient.get(`${END_POINTS.prefix}`);
+	}
+
+	async addTask(data) {
+		console.log(data, 'data');
+		return await httpClient.post(`${END_POINTS.prefix}`, data);
 	}
 }
 

@@ -18,6 +18,14 @@ export const getTaskHistory = createAsyncThunk(
 	}
 );
 
+export const addPost = createAsyncThunk(
+	//action type string
+	'task/addTaskHistory',
+	async (payload, { dispatch }) => {
+		const response = await taskHistoryApiHandler.addTask(payload);
+		console.log(response, 'response');
+	}
+);
 export const taskHistorySlice = createSlice({
 	name: 'taskHistory',
 	initialState,
