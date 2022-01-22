@@ -1,0 +1,61 @@
+.post_lists {
+  gap: 20px;
+  display: grid;
+  justify-content: center;
+
+  grid-template-columns: minmax(500px, 400px);
+  margin-top: 20px;
+  .post_item {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+
+    .header, .body {
+      padding: 10px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      justify-content: space-between;
+
+      .action_content {
+        gap: 8px;
+        display: grid;
+        grid-template-columns: auto auto;
+        .delete {
+          color: red;
+        }
+        .edit {
+          color: #4CAF50;
+        }
+        span {
+          cursor: pointer;
+          font-size: 1.3em;
+        }
+      }
+      .date_count_content {
+        display: flex;
+        align-items: flex-end;
+
+        .date_count {
+          font-size: 1rem;
+          margin-left: 5px;
+        }
+      }
+
+      .count_content {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        color: white;
+        align-items: center;
+        border-radius: 100px;
+        justify-content: center;
+        background-color: #4caf509e;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+      }
+    }
+
+  }
+}

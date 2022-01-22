@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../button';
 import useTranslation from '../../../hooks/useTranslation';
 import T from '../.././../core/translations/translations.json';
@@ -7,14 +7,24 @@ import './index.scss';
 const Modal = ({
 				   onOk,
 				   title,
+				   visible,
 				   onClose,
 				   children,
 				   okButtonDisable
 			   }) => {
 	const translate = useTranslation();
 
+	useEffect(() => {
+		if (visible) {
+			document.body.style.overflow = 'hidden';
+		}
+
+		return () => {
+			document.body.style.overflow = 'unset';
+		}
+	}, [visible]);
 	return (
-		<div className="modal_main_container">
+		<div className="modal_main_container open_modal">
 			<div className="modal_main_content">
 				<div className="modal_head">
 					<span className="close" onClick={onClose}>x</span>
