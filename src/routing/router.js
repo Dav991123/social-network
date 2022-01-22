@@ -6,6 +6,7 @@ import defineGuards from './defineGuards/defineGuards';
 const Profile = lazy(() => import('../view/pages/profile'));
 const Login = lazy(() => import('../view/pages/auth/login'));
 const Register = lazy(() => import('../view/pages/auth/register'));
+const TaskHistory = lazy(() => import('../view/pages/taskHistory'));
 const AccountSettings = lazy(() => import('../view/pages/accountSettings'));
 
 export const ROUTE_CONSTANTS = {
@@ -13,7 +14,8 @@ export const ROUTE_CONSTANTS = {
     LOGIN: '/login',
     PROFILE: '/profile',
     REGISTER: '/register',
-    ACCOUNT_SETTINGS: '/account-settings'
+    TASK_HISTORY: '/task-history',
+    ACCOUNT_SETTINGS: '/account-settings',
 };
 
 export const rootRoutes = [
@@ -35,6 +37,11 @@ export const rootRoutes = [
     {
         path: ROUTE_CONSTANTS.ACCOUNT_SETTINGS,
         component: () => defineGuards([IsAuthLayer], AccountSettings),
+        exact: true
+    },
+    {
+        path: ROUTE_CONSTANTS.TASK_HISTORY,
+        component: () => defineGuards([IsAuthLayer], TaskHistory),
         exact: true
     }
 ];

@@ -1,0 +1,1 @@
+export const taskHistorySelector = state => state.taskHistory.task;
