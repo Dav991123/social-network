@@ -11,55 +11,55 @@ import { authPendingSelector } from '../../../../stateManagement/selectors/auth'
 import './index.scss';
 
 const Login = () => {
-    const dispatch = useDispatch();
-    const pending = useSelector(authPendingSelector);
-    const { values, errors, isValid, handleChange } = useForm({
-        initialState: {
-            email: '',
-            password: ''
-        },
-        validation: signInValidation,
-    });
+	const dispatch = useDispatch();
+	const pending = useSelector(authPendingSelector);
+	const { values, errors, isValid, handleChange } = useForm({
+		initialState: {
+			email: 'sargsyand89@gmail.com',
+			password: '10011001Dav'
+		},
+		validation: signInValidation
+	});
 
-    const handleLogin = () => {
-        if (isValid) {
-            let { email, password } = values;
-            email = email.trim();
-            password = password.trim();
+	const handleLogin = () => {
+		if(isValid) {
+			let { email, password } = values;
+			email = email.trim();
+			password = password.trim();
 
-            dispatch(signIn({
-                email, password
-            }));
-        }
-    };
+			dispatch(signIn({
+				email, password
+			}));
+		}
+	};
 
-    return (
-        <AuthContainer
-            authType="login"
-            position="center"
-            isValid={isValid}
-            onSave={handleLogin}
-            saveButtonLoading={pending}
-        >
-            <Input
-                name="email"
-                label={T.EMAIL}
-                placeholder={T.EMAIL}
-                value={values.email}
-                onChange={handleChange}
-                errorText={errors.email}
-            />
+	return (
+		<AuthContainer
+			authType="login"
+			position="center"
+			isValid={isValid}
+			onSave={handleLogin}
+			saveButtonLoading={pending}
+		>
+			<Input
+				name="email"
+				label={T.EMAIL}
+				placeholder={T.EMAIL}
+				value={values.email}
+				onChange={handleChange}
+				errorText={errors.email}
+			/>
 
-            <PasswordInput
-                name="password"
-                label={T.PASSWORD}
-                placeholder={T.PASSWORD}
-                value={values.password}
-                onChange={handleChange}
-                errorText={errors.password}
-            />
-        </AuthContainer>
-    );
+			<PasswordInput
+				name="password"
+				label={T.PASSWORD}
+				placeholder={T.PASSWORD}
+				value={values.password}
+				onChange={handleChange}
+				errorText={errors.password}
+			/>
+		</AuthContainer>
+	);
 };
 
 export default Login;

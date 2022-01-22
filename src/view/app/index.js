@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import Header from '../components/header';
 import Routes from '../components/routerOutlet';
 import { rootRoutes } from '../../routing/router';
-import { useDispatch } from 'react-redux';
-import './index.scss';
 import { authRefresh } from '../pages/auth/authSlice';
-import Header from '../components/header';
+import './index.scss';
 
 const App = () => {
-    const [ isLoading, seIsLoading ] = useState(true);
-    const dispatch = useDispatch();
+	const [ isLoading, seIsLoading ] = useState(true);
+	const dispatch = useDispatch();
 
-    useEffect(() => {
-        firstRefresh();
-    }, []);
+	useEffect(() => {
+		firstRefresh();
+	}, []);
 
-    const firstRefresh = () => {
-        dispatch(authRefresh())
-        seIsLoading(false);
-    };
+	const firstRefresh = () => {
+		dispatch(authRefresh());
+		seIsLoading(false);
+	};
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
+	if(isLoading) {
+		return <div>Loading...</div>;
+	}
 
-    return (
-        <div>
-            <Header />
-            <Routes routes={rootRoutes}/>
-        </div>
-    );
+	return (
+		<div>
+			<Header/>
+			<Routes routes={rootRoutes}/>
+		</div>
+	);
 };
 
 export default App;

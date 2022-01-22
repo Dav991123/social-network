@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import postsApiHandler from '../../../core/services/api/postsApiHandler';
 
 const initialState = {
+	pending: false,
 	postsLists: {
 		count: 0,
 		data: []
@@ -12,8 +13,10 @@ export const getPosts = createAsyncThunk(
 	//action type string
 	'posts/getPosts',
 	async (_, { dispatch }) => {
-		const response = await postsApiHandler.getTask();
-		dispatch(setTaskHistory(response));
+		dispatch(setPending(true));
+		const response = await postsApiHandler.getPosts();
+		dispatch(setPosts(response));
+		dispatch(setPending(false));
 	}
 );
 
@@ -21,7 +24,7 @@ export const addPost = createAsyncThunk(
 	//action type string
 	'post/addPost',
 	async (payload, { dispatch }) => {
-		const response = await postsApiHandler.addTask(payload);
+		const response = await postsApiHandler.addPost(payload);
 		dispatch(getPosts());
 	}
 );
@@ -40,11 +43,14 @@ export const postsSlice = createSlice({
 	name: 'posts',
 	initialState,
 	reducers: {
-		setTaskHistory: (state, { payload }) => {
+		setPosts: (state, { payload }) => {
 			state.postsLists = payload;
+		},
+		setPending: (state, { payload }) => {
+			state.pending = payload;
 		}
 	}
 });
 
-export const { setTaskHistory } = postsSlice.actions;
+export const { setPosts, setPending } = postsSlice.actions;
 export default postsSlice.reducer;

@@ -9,7 +9,7 @@ const emailValidation = (value, errors) => {
 const passWordValidation = (value, errors) => {
 	if(!value) {
 		errors.password = 'Password required';
-	} else if(value.length < 6) {
+	} else if(value.length < 6 || value.length > 12) {
 		errors.password = 'password should contain at least 6 characters';
 	}
 };

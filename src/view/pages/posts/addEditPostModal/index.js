@@ -17,7 +17,6 @@ const modalTypeData = {
 
 const AddEditPostModal = ({
 							  isOpenAddEditModal,
-							  setEditAddModalState,
 							  editAddModalState: { visible, state, type }
 						  }) => {
 

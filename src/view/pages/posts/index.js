@@ -14,7 +14,6 @@ const Posts = () => {
 	const dispatch = useDispatch();
 	const translate = useTranslation();
 	const { data: postData, count } = useSelector(postsSelector);
-
 	const [ deleteModalState, setDeleteModalState ] = useState({
 		id: '',
 		visible: false
@@ -96,13 +95,15 @@ const Posts = () => {
 			}
 
 			<div className="task_history_container">
-				<div className="">
+				<div>
 					<Button
 						onClick={openAddModal}
 						text={T.ADD_DESCRIPTION}
 					/>
 
-					<span>{translate(T.POST)} ({count})</span>
+					<p className="posts_count_content">
+						{translate(T.POST)} ({count})
+					</p>
 				</div>
 
 				<div className="post_container">
