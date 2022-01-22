@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PostList from './postList';
-import { getPosts } from './postsSlice';
 import Modal from '../../components/modal';
 import Button from '../../components/button';
 import AddEditPostModal from './addEditPostModal';
+import { deletePost, getPosts } from './postsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import useTranslation from '../../../hooks/useTranslation';
 import T from '../../../core/translations/translations.json';
@@ -29,12 +29,20 @@ const Posts = () => {
 		dispatch(getPosts());
 	}, []);
 
-
 	const isOpenAddEditModal = ({ type = '', state = null }) => {
 		setEditAddModalState(prev => (
 			{
 				type,
 				state,
+				visible: !prev.visible
+			}
+		));
+	};
+
+	const isOpenDeleteModal = ({ id = '' }) => {
+		setDeleteModalState(prev => (
+			{
+				id,
 				visible: !prev.visible
 			}
 		));
@@ -48,6 +56,18 @@ const Posts = () => {
 		isOpenAddEditModal({ type: 'EDIT', state });
 	};
 
+	const openDeleteModal = (id) => {
+		isOpenDeleteModal({ id });
+	};
+
+	const closeDeleteModal = () => {
+		isOpenDeleteModal({});
+	};
+
+	const handleDeletePost = () => {
+		dispatch(deletePost(deleteModalState.id));
+		closeDeleteModal();
+	};
 
 	return (
 		<>
@@ -65,9 +85,12 @@ const Posts = () => {
 			{
 				deleteModalState.visible && (
 					<Modal
+						title={T.DELETE_POST}
+						onOk={handleDeletePost}
+						onClose={closeDeleteModal}
 						visible={deleteModalState.visible}
 					>
-
+						<p>{translate(T.DELETE_POST_MESSAGE)}? ({deleteModalState.id})</p>
 					</Modal>
 				)
 			}
@@ -86,6 +109,7 @@ const Posts = () => {
 					<PostList
 						data={postData}
 						onOpenEditModal={openEditModal}
+						onOpenDeleteModal={openDeleteModal}
 					/>
 				</div>
 			</div>

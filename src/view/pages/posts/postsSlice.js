@@ -25,6 +25,17 @@ export const addPost = createAsyncThunk(
 		dispatch(getPosts());
 	}
 );
+
+export const deletePost = createAsyncThunk(
+	'post/deletePost',
+	async (payload, { dispatch }) => {
+		const response = await postsApiHandler.deletePost(payload);
+		if(response.success) {
+			dispatch(getPosts());
+		}
+	}
+);
+
 export const postsSlice = createSlice({
 	name: 'posts',
 	initialState,

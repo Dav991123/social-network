@@ -30,7 +30,6 @@ class HttpClient {
 	}
 
 	put(url, data) {
-		console.log(data, 'option');
 		return this.httpConfig.put(`${this.api}/${url}`, data, {
 			headers: {
 				[HEADERS.Authorization]: `${BEARER} ${this.token}`
@@ -38,7 +37,12 @@ class HttpClient {
 		});
 	}
 
-	delete() {
+	delete(url) {
+		return this.httpConfig.delete(`${this.api}/${url}`, {
+			headers: {
+				[HEADERS.Authorization]: `${BEARER} ${this.token}`
+			}
+		});
 
 	}
 }
