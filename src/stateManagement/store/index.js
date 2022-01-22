@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../../view/pages/auth/authSlice';
-import taskHistoryReducer from '../../view/pages/taskHistory/taskHistorySlice';
+import postsReducer from '../../view/pages/posts/postsSlice';
 
 export default configureStore({
     reducer: {
         auth: authReducer,
-        taskHistory: taskHistoryReducer,
+        posts: postsReducer,
     }
 });

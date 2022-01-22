@@ -11,7 +11,7 @@ const Header = () => {
 
     const isAuth = useSelector(authSelector);
     const goHome = () => {
-        history.push(ROUTE_CONSTANTS.TASK_HISTORY);
+        history.push(ROUTE_CONSTANTS.POSTS);
     };
 
     return (
