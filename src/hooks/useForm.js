@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useDidUpdateEffect from './useDidUpdateEffect';
 
 export const useForm = ({ initialState, validation }) => {
@@ -16,11 +16,7 @@ export const useForm = ({ initialState, validation }) => {
 	}, [ values ]);
 
 	useEffect(() => {
-		if(Object.keys(errors).length === 0) {
-			setIsDisabled(false);
-		} else {
-			setIsDisabled(true);
-		}
+		setIsDisabled(!Object.keys(errors).length);
 	}, [ errors, values ]);
 
 	return {

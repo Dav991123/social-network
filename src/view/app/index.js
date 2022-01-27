@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Header from '../components/header';
 import Routes from '../components/routerOutlet';
@@ -11,13 +11,9 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		firstRefresh();
-	}, []);
-
-	const firstRefresh = () => {
 		dispatch(authRefresh());
 		seIsLoading(false);
-	};
+	}, []);
 
 	if(isLoading) {
 		return <div>Loading...</div>;
