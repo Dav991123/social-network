@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { signUp } from '../authSlice';
 import Input from '../../../components/input';
 import { useForm } from '../../../../hooks/useForm';
@@ -22,11 +22,11 @@ const Register = () => {
 		validation: signUpValidation
 	});
 
-	const handleRegister = () => {
+	const handleRegister = useCallback(() => {
 		if(isValid) {
 			dispatch(signUp(values));
 		}
-	};
+	}, []);
 
 	return (
 		<AuthContainer

@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { TranslationContext } from '../context/translationContext';
 
 const AppWrapper = () => {
-	const [ translations, setTranslations ] = useState({});
+	const [ translations ] = useState({});
 
 	return (
 		<TranslationContext.Provider value={translations}>

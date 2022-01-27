@@ -21,7 +21,7 @@ const TextInput = ({
     }, [controlledValue]);
 
     const handleChange = (event) => {
-        let { value = '' } = event.target;
+        const { value = '' } = event.target;
         setValue(value);
         onChange(event);
     };
@@ -40,7 +40,7 @@ const TextInput = ({
                     value={value ?? ''}
                     onChange={handleChange}
                     placeholder={translate(placeholder)}
-                    className={`min_inp_style`}
+                    className="min_inp_style"
                     {...restProps}
                 />
             </label>

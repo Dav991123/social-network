@@ -15,8 +15,8 @@ const Login = () => {
 	const pending = useSelector(authPendingSelector);
 	const { values, errors, isValid, handleChange } = useForm({
 		initialState: {
-			email: 'sargsyand89@gmail.com',
-			password: '10011001Dav'
+			email: '',
+			password: ''
 		},
 		validation: signInValidation
 	});
